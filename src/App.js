@@ -42,17 +42,27 @@ class SearchBar extends Component {
             this.state = {
                 term: ''
             }
+
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
         }
     
-        onInputChange(term) {
+        handleChange(term) {
             this.setState({term});
-            this.props.onTermChange(term);
+        }
+
+        handleSubmit(event) {
+            event.preventDefault();
+            this.props.onTermChange(this.state.term);
         }
     
         render() {
             return (
                 <div className="search">
-                    <input onChange={event => this.onInputChange(event.target.value)} />
+                    <form onSubmit={this.handleSubmit}>
+                        <input value={this.state.term} onChange={event => this.handleChange(event.target.value)} />
+                        <input type='submit' value="Submit" />
+                    </form>
                 </div>
             );
         }
