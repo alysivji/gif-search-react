@@ -3,7 +3,6 @@ import './App.css';
 import request from 'superagent';
 
 class App extends Component {
-
     constructor() {
         super();
 
@@ -35,38 +34,37 @@ class App extends Component {
 }
 
 class SearchBar extends Component {
-    
-        constructor() {
-            super();
+    constructor() {
+        super();
 
-            this.state = {
-                term: ''
-            }
-
-            this.handleChange = this.handleChange.bind(this);
-            this.handleSubmit = this.handleSubmit.bind(this);
-        }
-    
-        handleChange(term) {
-            this.setState({term});
+        this.state = {
+            term: ''
         }
 
-        handleSubmit(event) {
-            event.preventDefault();
-            this.props.onTermChange(this.state.term);
-        }
-    
-        render() {
-            return (
-                <div className="search">
-                    <form onSubmit={this.handleSubmit}>
-                        <input value={this.state.term} onChange={event => this.handleChange(event.target.value)} />
-                        <input type='submit' value="Submit" />
-                    </form>
-                </div>
-            );
-        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleChange(term) {
+        this.setState({term});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.onTermChange(this.state.term);
+    }
+
+    render() {
+        return (
+            <div className="search">
+                <form onSubmit={this.handleSubmit}>
+                    <input value={this.state.term} onChange={event => this.handleChange(event.target.value)} />
+                    <input type='submit' value="Submit" />
+                </form>
+            </div>
+        );
+    }
+}
 
 
 const GifList = (props) => {
@@ -77,7 +75,7 @@ const GifList = (props) => {
     return (
         <div className="gif-list">{gifItems}</div>
     );
-    };
+};
 
 
 const GifItem = (image) => {
@@ -86,6 +84,6 @@ const GifItem = (image) => {
             <img src={image.gif.images.downsized.url} />
         </div>
     )
-    };
+};
 
 export default App;
